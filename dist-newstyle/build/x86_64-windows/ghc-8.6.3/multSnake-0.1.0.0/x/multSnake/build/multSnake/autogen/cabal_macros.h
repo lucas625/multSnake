@@ -22,6 +22,17 @@
   (major1) == 4 && (major2) == 12 && (minor) <= 0)
 #endif /* MIN_VERSION_base */
 
+/* package gloss-1.13.0.1 */
+#ifndef VERSION_gloss
+#define VERSION_gloss "1.13.0.1"
+#endif /* VERSION_gloss */
+#ifndef MIN_VERSION_gloss
+#define MIN_VERSION_gloss(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  13 || \
+  (major1) == 1 && (major2) == 13 && (minor) <= 0)
+#endif /* MIN_VERSION_gloss */
+
 /* tool alex-3.2.4 */
 #ifndef TOOL_VERSION_alex
 #define TOOL_VERSION_alex "3.2.4"

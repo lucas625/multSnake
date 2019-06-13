@@ -18,4 +18,8 @@ Contém Um jogo de cobrinha multiplayer.
 
 - Instale o cabal:
     - Veja este [link](https://www.haskell.org/cabal/).
+    - Este comando da build. 
+        - `$ cabal init -n --is-executable`
+    - Este comando roda.
+        - `$ cabal v2-run`
 
