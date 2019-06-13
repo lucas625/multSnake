@@ -13,7 +13,8 @@ module Eventos where
         if(a) == 0
         then do
             putMVar p1Control (a+1)
-            return (game { p1 = (Obj x y 0 maxSnakeVel) } , p1Control, p2Control)
+            vel = snakeVel game
+            return (game { p1 = (Obj x y 0 vel) } , p1Control, p2Control)
             where (Obj x y vx vy) = p1 game
         else do
             putMVar p1Control a
@@ -24,7 +25,8 @@ module Eventos where
         if(a) == 0
             then do
                 putMVar p1Control (a+1)
-                return (game { p1 = (Obj x y 0 -maxSnakeVel) } , p1Control, p2Control)
+                vel = snakeVel game
+                return (game { p1 = (Obj x y 0 -vel) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p1 game
             else do
                 putMVar p1Control a
@@ -34,8 +36,9 @@ module Eventos where
         a <- takeMVar p1Control
         if(a) == 0
             then do
+                vel = snakeVel game
                 putMVar p1Control (a+1)
-                return (game { p1 = (Obj x y -maxSnakeVel 0) } , p1Control, p2Control)
+                return (game { p1 = (Obj x y -vel 0) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p1 game
             else do
                 putMVar p1Control a
@@ -45,8 +48,9 @@ module Eventos where
         a <- takeMVar p1Control
         if(a) == 0
             then do
+                vel = snakeVel game
                 putMVar p1Control (a+1)
-                return (game { p1 = (Obj x y maxSnakeVel 0) } , p1Control, p2Control)
+                return (game { p1 = (Obj x y vel 0) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p1 game
             else do
                 putMVar p1Control a
@@ -58,8 +62,9 @@ module Eventos where
         a <- takeMVar p2Control
         if(a) == 0
             then do
+                vel = snakeVel game
                 putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y 0 maxSnakeVel) } , p1Control, p2Control)
+                return (game { p2 = (Obj x y 0 vel) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p2 game
             else do
                 putMVar p2Control a
@@ -69,8 +74,9 @@ module Eventos where
         a <- takeMVar p2Control
         if(a) == 0
             then do
+                vel = snakeVel game
                 putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y 0 -maxSnakeVel) } , p1Control, p2Control)
+                return (game { p2 = (Obj x y 0 -vel) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p2 game
             else do
                 putMVar p2Control a
@@ -80,8 +86,9 @@ module Eventos where
         a <- takeMVar p2Control
         if(a) == 0
             then do
+                vel = snakeVel game
                 putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y -maxSnakeVel 0) } , p1Control, p2Control)
+                return (game { p2 = (Obj x y -vel 0) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p2 game
             else do
                 putMVar p2Control a
@@ -91,12 +98,26 @@ module Eventos where
         a <- takeMVar p2Control
         if(a) == 0
             then do
+                vel = snakeVel game
                 putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y maxSnakeVel 0) } , p1Control, p2Control)
+                return (game { p2 = (Obj x y vel 0) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p2 game
             else do
                 putMVar p2Control a
-
+    -- mudar nível
+    eventos (EventKey (SpecialKey KeySpace) _ _ _) (game, p1Control, p2Control) = do
+        if (gameType==1)--nível 1
+            then do
+                return (levelTwoState, p1Control, p2Control)
+            else if (gameType==2)--nível 2
+                then do
+                    return (levelThreeState, p1Control, p2Control)
+            else if (gameType==3)--nível 3
+                then do
+                    return (levelOneState, p1Control, p2Control)--de volta ao nível 1
+            else do
+                return (levelOneState, p1Control, p2Control)
+    
     -- KEYUP events
 
     cancelp1 = do
@@ -141,6 +162,6 @@ module Eventos where
             where
                 (Obj x1 y1 vx1 vy1) = p1 game
                 (Obj x2 y2 vx2 vy2) = p2 game
-                
+
     -- default
     eventos _ (game, p1Control, p2Control) = return (game, p1Control, p2Control)
