@@ -18,6 +18,11 @@ Contém Um jogo de cobrinha multiplayer.
 
 - Instale o cabal:
     - Veja este [link](https://www.haskell.org/cabal/).
+    - Pode ser necessário usar o comando:
+        - `$ cabal update`
+    - Instale o gloss:
+        - `$ cabal install gloss`
+        - A instalação ou o comando de rodar pode dar erro, caso isso aconteça, repita o passo a passo da instalação.
     - Este comando da build. 
         - `$ cabal init -n --is-executable`
     - Este comando roda.
