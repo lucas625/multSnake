@@ -6,11 +6,13 @@ Contém Um jogo de cobrinha multiplayer.
 ## Jogar
 
 - Como player 1: 
-    - **seta pra cima** = frente
+    - **seta pra cima** = cima
+    - **seta pra baixo** = baixo
     - **seta esquerda** = esquerda
     - **seta direita** = direita
 - Como player 2: 
     - **w** = cima
+    - **s** = baixo
     - **a** = esquerda
     - **d** = direita
 
