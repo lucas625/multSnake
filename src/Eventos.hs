@@ -1,5 +1,6 @@
 module Eventos where
-    -- import Data
+    
+    import Data
     import Control.Concurrent.Mvar
     import Graphics.Gloss.Interface.Pure.Game
 
@@ -26,7 +27,7 @@ module Eventos where
             then do
                 putMVar p1Control (a+1)
                 vel = snakeVel game
-                return (game { p1 = (Obj x y 0 -vel) } , p1Control, p2Control)
+                return (game { p1 = (Obj x y 0 (-vel)) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p1 game
             else do
                 putMVar p1Control a
@@ -38,7 +39,7 @@ module Eventos where
             then do
                 vel = snakeVel game
                 putMVar p1Control (a+1)
-                return (game { p1 = (Obj x y -vel 0) } , p1Control, p2Control)
+                return (game { p1 = (Obj x y (-vel) 0) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p1 game
             else do
                 putMVar p1Control a
@@ -76,7 +77,7 @@ module Eventos where
             then do
                 vel = snakeVel game
                 putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y 0 -vel) } , p1Control, p2Control)
+                return (game { p2 = (Obj x y 0 (-vel)) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p2 game
             else do
                 putMVar p2Control a
@@ -88,7 +89,7 @@ module Eventos where
             then do
                 vel = snakeVel game
                 putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y -vel 0) } , p1Control, p2Control)
+                return (game { p2 = (Obj x y (-vel) 0) } , p1Control, p2Control)
                 where (Obj x y vx vy) = p2 game
             else do
                 putMVar p2Control a
