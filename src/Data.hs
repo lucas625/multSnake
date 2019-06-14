@@ -16,7 +16,7 @@ module Data where
         , score :: (Integer, Integer)
         , result :: Integer
         , isOver :: Bool
-        , snakeVel = 450
+        , snakeVel :: Float
         , gameType :: Integer
         } deriving Show 
 

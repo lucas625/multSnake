@@ -1,162 +1,146 @@
 module Eventos where
     
     import Data
-    import Control.Concurrent.Mvar
+    import Control.Concurrent.MVar
     import Graphics.Gloss.Interface.Pure.Game
 
-    eventos :: Event -> (Snakegame, Control, Control) -> IO(Snakegame, Control, Control)
+    eventos :: Event -> (SnakeGame, Control, Control) -> IO(SnakeGame, Control, Control)
     -- pressionar tecla
     -- Player 1
 
     -- cima p1
-    eventos (SpecialKey KeyUp) (Down) _ _) (game, p1Control, p2Control) = do
+    eventos (EventKey (SpecialKey KeyUp) (Down) _ _) (game, p1Control, p2Control) = do
         a <- takeMVar p1Control
-        if(a) == 0
-        then do
-            putMVar p1Control (a+1)
+        putMVar p1Control (a+1)
+        return (game { p1 = (Obj x y 0 vel) } , p1Control, p2Control)
+        where 
+            (Obj x y vx vy) = p1 game
             vel = snakeVel game
-            return (game { p1 = (Obj x y 0 vel) } , p1Control, p2Control)
-            where (Obj x y vx vy) = p1 game
-        else do
-            putMVar p1Control a
 
     -- baixo p1
-    eventos (SpecialKey KeyDown) (Down) _ _) (game, p1Control, p2Control) = do
+    eventos (EventKey (SpecialKey KeyDown) (Down) _ _) (game, p1Control, p2Control) = do
         a <- takeMVar p1Control
-        if(a) == 0
-            then do
-                putMVar p1Control (a+1)
-                vel = snakeVel game
-                return (game { p1 = (Obj x y 0 (-vel)) } , p1Control, p2Control)
-                where (Obj x y vx vy) = p1 game
-            else do
-                putMVar p1Control a
+        putMVar p1Control (a+1)
+        return (game { p1 = (Obj x y 0 (-vel)) } , p1Control, p2Control)
+        where 
+            (Obj x y vx vy) = p1 game
+            vel = snakeVel game
 
     -- esquerda p1
-    eventos (SpecialKey KeyLeft) (Down) _ _) (game, p1Control, p2Control) = do
+    eventos (EventKey (SpecialKey KeyLeft) (Down) _ _) (game, p1Control, p2Control) = do
         a <- takeMVar p1Control
-        if(a) == 0
-            then do
-                vel = snakeVel game
-                putMVar p1Control (a+1)
-                return (game { p1 = (Obj x y (-vel) 0) } , p1Control, p2Control)
-                where (Obj x y vx vy) = p1 game
-            else do
-                putMVar p1Control a
+        putMVar p1Control (a+1)
+        return (game { p1 = (Obj x y (-vel) 0) } , p1Control, p2Control)
+        where 
+            (Obj x y vx vy) = p1 game
+            vel = snakeVel game
 
     -- direita p1
-    eventos (SpecialKey KeyRight) (Down) _ _) (game, p1Control, p2Control) = do
+    eventos (EventKey (SpecialKey KeyRight) (Down) _ _) (game, p1Control, p2Control) = do
         a <- takeMVar p1Control
-        if(a) == 0
-            then do
-                vel = snakeVel game
-                putMVar p1Control (a+1)
-                return (game { p1 = (Obj x y vel 0) } , p1Control, p2Control)
-                where (Obj x y vx vy) = p1 game
-            else do
-                putMVar p1Control a
+        putMVar p1Control (a+1)
+        return (game { p1 = (Obj x y vel 0) } , p1Control, p2Control)
+        where 
+            (Obj x y vx vy) = p1 game
+            vel = snakeVel game
 
     -- Player 2
 
     -- cima p2
-    eventos (Char 'w') (Down) _ _) (game, p1Control, p2Control) = do
+    eventos (EventKey (Char 'w') (Down) _ _) (game, p1Control, p2Control) = do
         a <- takeMVar p2Control
-        if(a) == 0
-            then do
-                vel = snakeVel game
-                putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y 0 vel) } , p1Control, p2Control)
-                where (Obj x y vx vy) = p2 game
-            else do
-                putMVar p2Control a
+        putMVar p2Control 1
+        return (game { p2 = (Obj x y 0 vel) } , p1Control, p2Control)
+        where 
+            (Obj x y vx vy) = p2 game
+            vel = snakeVel game
 
     -- baixo p2
-    eventos (Char 's') (Down) _ _) (game, p1Control, p2Control) = do
+    eventos (EventKey (Char 's') (Down) _ _) (game, p1Control, p2Control) = do
         a <- takeMVar p2Control
-        if(a) == 0
-            then do
-                vel = snakeVel game
-                putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y 0 (-vel)) } , p1Control, p2Control)
-                where (Obj x y vx vy) = p2 game
-            else do
-                putMVar p2Control a
+        putMVar p2Control 1
+        return (game { p2 = (Obj x y 0 (-vel)) } , p1Control, p2Control)
+        where 
+            (Obj x y vx vy) = p2 game
+            vel = snakeVel game
 
     -- esquerda p2
-    eventos (Char 'a') (Down) _ _) (game, p1Control, p2Control) = do
+    eventos (EventKey (Char 'a') (Down) _ _) (game, p1Control, p2Control) = do
         a <- takeMVar p2Control
-        if(a) == 0
-            then do
-                vel = snakeVel game
-                putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y (-vel) 0) } , p1Control, p2Control)
-                where (Obj x y vx vy) = p2 game
-            else do
-                putMVar p2Control a
+        putMVar p2Control 1
+        return (game { p2 = (Obj x y (-vel) 0) } , p1Control, p2Control)
+        where 
+            (Obj x y vx vy) = p2 game
+            vel = snakeVel game
 
     -- direita p2
-    eventos (Char 'd') (Down) _ _) (game, p1Control, p2Control) = do
+    eventos (EventKey (Char 'd') (Down) _ _) (game, p1Control, p2Control) = do
         a <- takeMVar p2Control
-        if(a) == 0
-            then do
-                vel = snakeVel game
-                putMVar p2Control (a+1)
-                return (game { p2 = (Obj x y vel 0) } , p1Control, p2Control)
-                where (Obj x y vx vy) = p2 game
-            else do
-                putMVar p2Control a
+        putMVar p2Control 1
+        return (game { p2 = (Obj x y vel 0) } , p1Control, p2Control)
+        where 
+            (Obj x y vx vy) = p2 game
+            vel = snakeVel game
+
     -- mudar nível
     eventos (EventKey (SpecialKey KeySpace) _ _ _) (game, p1Control, p2Control) = do
-        if (gameType==1)--nível 1
+        if (gt==1)--nível 1
             then do
                 return (levelTwoState, p1Control, p2Control)
-            else if (gameType==2)--nível 2
+            else if (gt==2)--nível 2
                 then do
                     return (levelThreeState, p1Control, p2Control)
-            else if (gameType==3)--nível 3
+            else if (gt==3)--nível 3
                 then do
                     return (levelOneState, p1Control, p2Control)--de volta ao nível 1
             else do
                 return (levelOneState, p1Control, p2Control)
+            where gt = gameType game
     
     -- KEYUP events
-
-    cancelp1 = do
-        c <- takeMVar p1Control
-        putMVar p1Control 0
-        return( game { p1 = (Obj x1 y1 0 0) }, p1Control, p2Control )
-    
-    cancelp2 = do
-        c <- takeMVar p2Control
-        putMVar p2Control 0
-        return( game { p2 = (Obj x1 y1 0 0) }, p1Control, p2Control )
     
     eventos (EventKey k (Up) _ _) (game, p1Control, p2Control)
         -- Player 1
         | (SpecialKey KeyUp) <- k = do
-            return cancelp1
+            c <- takeMVar p1Control
+            putMVar p1Control 0
+            return( game { p1 = (Obj x1 y1 0 0) }, p1Control, p2Control )
 
         | (SpecialKey KeyDown) <- k = do
-            return cancelp1
+            c <- takeMVar p1Control
+            putMVar p1Control 0
+            return( game { p1 = (Obj x1 y1 0 0) }, p1Control, p2Control )
 
         | (SpecialKey KeyLeft) <- k = do
-            return cancelp1
+            c <- takeMVar p1Control
+            putMVar p1Control 0
+            return( game { p1 = (Obj x1 y1 0 0) }, p1Control, p2Control )
         
         | (SpecialKey KeyDown) <- k = do
-            return cancelp1
+            c <- takeMVar p1Control
+            putMVar p1Control 0
+            return( game { p1 = (Obj x1 y1 0 0) }, p1Control, p2Control )
 
         -- Player 2
         | (Char 'w') <- k = do
-            return cancelp2
+            c <- takeMVar p2Control
+            putMVar p2Control 0
+            return( game { p2 = (Obj x1 y1 0 0) }, p1Control, p2Control )
 
         | (Char 's') <- k = do
-            return cancelp2
+            c <- takeMVar p2Control
+            putMVar p2Control 0
+            return( game { p2 = (Obj x1 y1 0 0) }, p1Control, p2Control )
 
         | (Char 'a') <- k = do
-            return cancelp2
+            c <- takeMVar p2Control
+            putMVar p2Control 0
+            return( game { p2 = (Obj x1 y1 0 0) }, p1Control, p2Control )
 
         | (Char 'd') <- k = do
-            return cancelp2
+            c <- takeMVar p2Control
+            putMVar p2Control 0
+            return( game { p2 = (Obj x1 y1 0 0) }, p1Control, p2Control )
             
         | otherwise = do -- nothing
             return(game, p1Control, p2Control)

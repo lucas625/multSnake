@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "D:\\Users\\lagc\\AppData\\Roaming\\cabal\\bin"
-libdir     = "D:\\Users\\lagc\\AppData\\Roaming\\cabal\\x86_64-windows-ghc-8.6.3\\multSnake-0.1.0.0-inplace-multSnake"
-dynlibdir  = "D:\\Users\\lagc\\AppData\\Roaming\\cabal\\x86_64-windows-ghc-8.6.3"
-datadir    = "D:\\Users\\lagc\\AppData\\Roaming\\cabal\\x86_64-windows-ghc-8.6.3\\multSnake-0.1.0.0"
-libexecdir = "D:\\Users\\lagc\\AppData\\Roaming\\cabal\\multSnake-0.1.0.0-inplace-multSnake\\x86_64-windows-ghc-8.6.3\\multSnake-0.1.0.0"
-sysconfdir = "D:\\Users\\lagc\\AppData\\Roaming\\cabal\\etc"
+bindir     = "C:\\Users\\Lucas Aurelio\\AppData\\Roaming\\cabal\\bin"
+libdir     = "C:\\Users\\Lucas Aurelio\\AppData\\Roaming\\cabal\\x86_64-windows-ghc-8.6.3\\multSnake-0.1.0.0-inplace-multSnake"
+dynlibdir  = "C:\\Users\\Lucas Aurelio\\AppData\\Roaming\\cabal\\x86_64-windows-ghc-8.6.3"
+datadir    = "C:\\Users\\Lucas Aurelio\\AppData\\Roaming\\cabal\\x86_64-windows-ghc-8.6.3\\multSnake-0.1.0.0"
+libexecdir = "C:\\Users\\Lucas Aurelio\\AppData\\Roaming\\cabal\\multSnake-0.1.0.0-inplace-multSnake\\x86_64-windows-ghc-8.6.3\\multSnake-0.1.0.0"
+sysconfdir = "C:\\Users\\Lucas Aurelio\\AppData\\Roaming\\cabal\\etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "multSnake_bindir") (\_ -> return bindir)
