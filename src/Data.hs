@@ -5,6 +5,12 @@ module Data where
     maxScore :: Integer
     maxScore = 15
 
+    padWidth, padHeight, ballRadius, ballRadius :: Float
+    padWidth = 20
+    padHeight = 20
+    ballRadius = 10
+    
+
     data Object = Obj 
         { x :: Float, y :: Float
         , vx :: Float, vy :: Float 

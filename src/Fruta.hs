@@ -4,8 +4,8 @@ module Fruta where
     import Snake
     import Graphics.Gloss.Interface.Pure.Game
 
-    mkBall :: Float -> Float -> Picture
-    mkBall x y = uncurry translate trans $ color ballColor $ circleSolid ballRadius
+    mkFruta :: Float -> Float -> Picture
+    mkFruta x y = uncurry translate trans $ color ballColor $ circleSolid ballRadius
         where 
             trans = (x, y)
 
@@ -18,7 +18,7 @@ module Fruta where
         then 2
         else 0
 
+
     randomPoint :: Int -> Int
     randomPoint x = randomR (50,50)
 
-    eatFruit :: Snake ->
