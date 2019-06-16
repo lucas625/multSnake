@@ -2,6 +2,12 @@ module Data where
     import Control.Concurrent.MVar
     import Graphics.Gloss.Interface.Pure.Game
 
+    width, height, upOffset, leftOffset :: Int
+    width = 600
+    height = 600
+    upOffset = 150
+    leftOffset = 380
+
     maxScore :: Integer
     maxScore = 15
 

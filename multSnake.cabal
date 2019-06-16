@@ -18,7 +18,7 @@ extra-source-files:  README.md, CHANGELOG.md
 
 executable multSnake
   main-is:             Main.hs
-  other-modules: Data, Eventos
+  -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.12 && <4.13, gloss >=1.13 && <1.14
   hs-source-dirs:      src
