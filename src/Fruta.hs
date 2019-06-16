@@ -1,7 +1,7 @@
 module Fruta where
 
     import Data
-    import Snake
+    import Cobra
     import Graphics.Gloss.Interface.Pure.Game
 
     mkFruta :: Float -> Float -> Picture
@@ -19,6 +19,5 @@ module Fruta where
         else 0
 
 
-    randomPoint :: Int -> Int
-    randomPoint x = randomR (50,50)
+    
 

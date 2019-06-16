@@ -5,11 +5,14 @@ module Data where
     maxScore :: Integer
     maxScore = 15
 
-    padWidth, padHeight, ballRadius, ballRadius :: Float
+    padWidth, padHeight, ballRadius :: Float
     padWidth = 20
     padHeight = 20
     ballRadius = 10
     
+    padColor,ballColor :: Color
+    padColor = light blue
+    ballColor = red
 
     data Object = Obj 
         { x :: Float, y :: Float
@@ -24,6 +27,7 @@ module Data where
         , isOver :: Bool
         , snakeVel :: Float
         , gameType :: Integer
+        , fruta :: Object
         } deriving Show 
 
     type Radius = Float 

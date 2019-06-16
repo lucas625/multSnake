@@ -1,12 +1,11 @@
 module Cobra where
 
     import Data
-    import Snake
     import Graphics.Gloss.Interface.Pure.Game
 
     mkcobra :: Float -> Float -> Float -> Picture
     mkcobra x y tamcobra = pictures
-        [ translate x y $ color padColor $ squareSolid padWidth padHeight]
+        [ translate x y $ color padColor $ rectangleSolid padWidth padHeight]
 
 
     moveCobra :: Float -> SnakeGame -> SnakeGame
