@@ -3,9 +3,27 @@ import Control.Concurrent.MVar
 import Graphics.Gloss
 import Graphics.Gloss.Data.ViewPort
 import Graphics.Gloss.Interface.IO.Game
+import qualified Graphics.Gloss.Interface.Pure.Game as G
 
 import Data
 import Eventos
+import Fruta
+import Cobra
+
+
+    
+background :: Color
+background = red
+
+window :: Display
+window = InWindow "Nice Window" (500, 500) (10, 10)
+
+
+drawing :: Picture
+drawing = circle 80
+
+
+
 
 main = do
-    display (InWindow "Nice Window" (200, 200) (10, 10)) white (Circle 80)
+    display window background drawing
