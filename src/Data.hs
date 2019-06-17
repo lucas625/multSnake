@@ -10,9 +10,10 @@ module Data where
     ballRadius = 10
     tamcobra = 20
     
-    padColor,ballColor :: Color
+    padColor,cobracor,ballColor :: Color
     padColor = light blue
-    ballColor = red
+    cobracor = chartreuse
+    ballColor = green
 
     data Object = Obj 
         { x :: Float, y :: Float

@@ -14,7 +14,7 @@ import Cobra
 
     
 background :: Color
-background = red
+background = black
 
 window :: Display
 window = InWindow "Nice Window" (500, 500) (10, 10)
