@@ -5,7 +5,7 @@ module Cobra where
 
     mkcobra :: Float -> Float -> Float -> Picture
     mkcobra x y tamcobra = pictures
-        [ translate x y $ color padColor $ rectangleSolid padWidth padHeight]
+        [ translate x y $ color padColor $ rectangleSolid padWidth tamcobra]
 
 
     moveCobra :: Float -> SnakeGame -> SnakeGame
