@@ -10,6 +10,7 @@ import Data
 import Eventos
 import Fruta
 import Cobra
+import Score
 
 
     
@@ -47,3 +48,5 @@ main = do
     p1Control <- newMVar 0
     p2Control <- newMVar 0
     playIO window background fps (levelOneState, p1Control, p2Control) render eventos update
+
+
