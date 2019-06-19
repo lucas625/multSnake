@@ -11,16 +11,6 @@ module Data where
     maxScore :: Integer
     maxScore = 15
 
-    padWidth,ballRadius,tamcobra :: Float
-    padWidth = 20
-    ballRadius = 10
-    tamcobra = 20
-    
-    padColor,cobracor,ballColor :: Color
-    padColor = light blue
-    cobracor = chartreuse
-    ballColor = green
-
     data Object = Obj 
         { x :: Float, y :: Float
         , vx :: Float, vy :: Float 
@@ -34,8 +24,6 @@ module Data where
         , isOver :: Bool
         , snakeVel :: Float
         , gameType :: Integer
-        , fruta :: Object
-        , padHeight :: Float
         } deriving Show 
 
     type Radius = Float 
@@ -51,7 +39,6 @@ module Data where
         , isOver = False
         , snakeVel = 450
         , gameType = 1
-        , padHeight = 20
         }
 
     levelTwoState :: SnakeGame
@@ -63,7 +50,6 @@ module Data where
         , isOver = False
         , snakeVel = 600
         , gameType = 2
-        , padHeight = 20
         }
 
     levelThreeState :: SnakeGame
@@ -75,5 +61,4 @@ module Data where
         , isOver = False
         , snakeVel = 800
         , gameType = 3
-        , padHeight = 20
         }
