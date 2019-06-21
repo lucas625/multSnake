@@ -34,15 +34,16 @@ render (game, _, _) = do
         pics = pictures [ mkcobra x1 y1 cobraWidth cobraHeight red
                         , mkcobra x2 y2 cobraWidth cobraHeight blue
                         , mkScore p1Score p2Score (result game)
+                        , mkFruta fx1 fy1 
                         ]
-        (Obj bx1 by1 _ _) = fruta game
+        (Obj fx1 fy1 _ _) = fruta game
         (Obj x1 y1 _ _) = p1 game
         (Obj x2 y2 _ _) = p2 game
         (p1Score, p2Score) = score game
 
 
 update :: Float -> (SnakeGame, Control, Control) -> IO (SnakeGame, Control, Control)
-update seconds (game, p1Control, p2Control) = return ( (moveCobra seconds width height game), p1Control, p2Control )
+update seconds (game, p1Control, p2Control) = return ( ( snakeGo $ moveCobra seconds width height game), p1Control, p2Control )
 
 
 main = do

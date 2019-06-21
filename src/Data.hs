@@ -1,6 +1,7 @@
 module Data where
     import Control.Concurrent.MVar
     import Graphics.Gloss.Interface.Pure.Game
+    import System.Random
 
     width, height:: Int
     width = 600
@@ -46,6 +47,7 @@ module Data where
         , isOver = False
         , snakeVel = 450
         , gameType = 1
+        , fruta = (Obj 0 0 0 0)
         }
 
     levelTwoState :: SnakeGame
@@ -57,6 +59,7 @@ module Data where
         , isOver = False
         , snakeVel = 600
         , gameType = 2
+        , fruta = (Obj 0 0 0 0)
         }
 
     levelThreeState :: SnakeGame
@@ -68,4 +71,6 @@ module Data where
         , isOver = False
         , snakeVel = 800
         , gameType = 3
+        , fruta = (Obj 0 0 0 0)
         }
+
