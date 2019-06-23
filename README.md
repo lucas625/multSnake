@@ -25,8 +25,13 @@ Contém Um jogo de cobrinha multiplayer.
     - Instale o gloss:
         - `$ cabal install gloss`
         - A instalação ou o comando de rodar pode dar erro, caso isso aconteça, repita o passo a passo da instalação.
+    - Instale o resto:
+        - `$ cabal install`
     - Este comando da build. 
         - `$ cabal init -n --is-executable`
     - Este comando roda.
-        - `$ cabal v2-run`
+        - `$ cabal run`
+        - Às vezes pode ser necessário usar este comando ao invés do `cabal run`:
+            - `$ cabal v2-run`
+
 
